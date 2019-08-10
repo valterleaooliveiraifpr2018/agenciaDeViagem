@@ -5,10 +5,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alphaviagens.alphaviagens.models.Reclamacao;
 import com.alphaviagens.alphaviagens.repositorys.ReclamacaoRepository;
@@ -18,68 +17,24 @@ public class ReclamacaoController {
 	@Autowired
 	ReclamacaoRepository rr;
 	
+	@RequestMapping(value = "/reclamacao", method = RequestMethod.GET)
+	public String eventos() {
 
-//	@RequestMapping("/mensagemReclamacao")
-//	public String mensagemReclamacao() {
-//		return "redirect:/reclamacao";
-//	}
-	@GetMapping("/mensagemReclamacao")
-	public ModelAndView mensagemReclamacao() {
-		
-		ModelAndView mv = new ModelAndView("/contact");
-		
-		
-		return mv;
+		return "/contact";
 	}
-	@GetMapping("/adicionarReclamacao")
-	public ModelAndView add(Reclamacao reclamacao) {
-		
-		ModelAndView mv = new ModelAndView("/contact");
-		mv.addObject("reclamacao", reclamacao);
-		
-		return mv;
-	}
-	@PostMapping("/salvarReclamacao")
-	public ModelAndView save(@Valid Reclamacao reclamacao, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return add(reclamacao);
+
+	@RequestMapping(value = "/reclamacao", method = RequestMethod.POST)
+	public String form(@Valid Reclamacao reclamacao,BindingResult result,RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			attributes.addFlashAttribute("mensagem", "Verifique os campos!!!");
+			return "redirect:/reclamacao";
 		}
-		
 		rr.saveAndFlush(reclamacao);
-		
-		return mensagemReclamacao();
+		return "eventos/mensagemReclamacao";
 	}
-	
-	
-	
-//	@RequestMapping(value = "/reclamacao", method = RequestMethod.GET)
-//	public String eventos() {
-//
-//		return "/contact";
-//	}
-//
-//	@RequestMapping(value = "/reclamacao", method = RequestMethod.POST)
-//	public String form(@Valid Reclamacao reclamacao,BindingResult result,RedirectAttributes attributes) {
-//		if (result.hasErrors()) {
-//			attributes.addFlashAttribute("mensagem", "Verifique os campos!!!");
-//			return "redirect:/reclamacao";
-//		}
-//		rr.saveAndFlush(reclamacao);
-//		return "eventos/mensagemReclamacao";
-//		
-//	}
-//		if (result.hasErrors()) {
-//			attributes.addFlashAttribute("mensagem", "Verifique os campos!!!");
-//			return "redirect:/reclamacao";
-//			
-//		}
-//		rr.save(reclamacao);
-//		attributes.addFlashAttribute("mensagem", "Verifique os campos!!!");
-//		return "eventos/mensagemReclamacao";
-//
-//		
-//	}
-	
+	@RequestMapping("/mensagemReclamacao")
+	public String mensagemReclamacao() {
+		return "redirect:/reclamacao";
+	}
 
 }
