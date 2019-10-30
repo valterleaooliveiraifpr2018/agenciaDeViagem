@@ -60,7 +60,7 @@
 	<![endif]-->
 
 </head>
-<body>
+<body> 
 
 	<div class="colorlib-loader"></div>
 
@@ -100,15 +100,14 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-					<li style="background-image: url(images/cover-img-3.jpg);">
+					<li style="background-image: url(images/cover-img-5.jpg);">
 						<div class="overlay"></div>
 						<div class="container-fluid">
 							<div class="row">
 								<div
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
-										<h2>Por AgenciaSuport.com</h2>
-										<h1>Contate - nos</h1>
+									<h1>Login</h1>
 									</div>
 								</div>
 							</div>
@@ -122,55 +121,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 animate-box">
-						<h3>Entrar em contato</h3>
-						
-						<form th:object="${reclamacao}" th:action="@{/reclamacao}" method="POST" >
-							<div class="row form-group">
-								<th:block th:include="mensagemValidacao"></th:block>
-								<div class="col-md-6 padding-bottom">
-									
-									<label for="fname">Nome</label>
-									<input name="nome" type="text" id="fname" class="form-control" placeholder="Seu primeiro nome">
-								</div>
-								<div class="col-md-6">
-									
-									<label for="lname">Sobrenome</label>
-									<input name="sobrenome" type="text" id="lname" class="form-control" placeholder="Seu sobrenome">
-								</div>
-							</div>
+<form action="/login" method="post">
 
-							<div class="row form-group">
-								<div class="col-md-12">
-									
-									<label for="email">Email</label>
-									<input name="email" type="text" id="email" class="form-control" placeholder="Seu email de contato">
-								</div>
-							</div>
+	<h3><label for="fname"> Usuário <input type="text" name="username" id="subject" class="input-group-sm"/> </label></h3>
+	<h3><label for="fname"> Senha   <input type="password" name="password" id="lname" class="input-group-sm"/> </label></h3>
+	<button type="submit" class="btn btn-primary">Entrar</button>
+	
 
-							<div class="row form-group">
-								<div class="col-md-12">
-									
-									<label for="subject">Assunto</label>
-									<input name="assunto" type="text" id="subject" class="form-control" placeholder="Seu assunto">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									
-									<label for="message">Mensagem</label>
-									<textarea name="mensagem" id="message" cols="30" rows="10" class="form-control" placeholder="Descreva sobre o assunto"></textarea>
-								</div>
-							</div>
-							<div class="form-group text-center">
-								<input type="submit" value="Enviar Mensagem" class="btn btn-primary">
-							</div>
-
-						</form>		
-
-						
-				</div>
-				<div class="col-md-10 col-md-offset-1 animate-box">
+</form>
+<div class="col-md-10 col-md-offset-1 animate-box">
 					<h3>Informação da agência</h3>
 					<div class="row contact-info-wrap">
 						<div class="col-md-3">
@@ -207,7 +166,7 @@
 	<div id="map" class="colorlib-map"></div>
 
 	<div id="colorlib-subscribe"
-		style="background-image: url(images/img_bg_2.jpg);"
+		style="background-image: url(images/img_bg_5.jpg);"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
@@ -319,8 +278,6 @@
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 	
-	
-
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -347,7 +304,11 @@
 
 	<!-- Main -->
 	<script src="js/main.js"></script>
-
+</div>
 </body>
 </html>
 
+
+</body> 
+
+</html> 

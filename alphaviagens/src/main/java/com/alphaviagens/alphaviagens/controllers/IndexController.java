@@ -14,7 +14,10 @@ public class IndexController {
 	public String about() {
 		return "about";
 	}
-
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
 	@RequestMapping("/hotels")
 	public String hotel() {
 		return "hotels";
