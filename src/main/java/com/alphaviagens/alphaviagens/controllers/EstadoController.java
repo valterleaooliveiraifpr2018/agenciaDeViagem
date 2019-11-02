@@ -20,33 +20,33 @@ import com.alphaviagens.alphaviagens.repositorys.EstadoRepository;
 public class EstadoController {
 	@Autowired
 	EstadoRepository repository;
-	@GetMapping("/estadoForm")
+	@GetMapping("administrativo/estadoForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("/estadoForm");
+		ModelAndView mv = new ModelAndView("administrativo/estadoForm");
 		mv.addObject("estados", repository.findAll());
 		return mv;
 	    }
-	@RequestMapping("/estadoAdd")
+	@RequestMapping("administrativo/estadoAdd")
 	public ModelAndView add(Estado estado){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("estado",estado);
 		return mv;
 	    }
-	@RequestMapping("/editarEstado/{id}")
+	@RequestMapping("administrativo/editarEstado/{id}")
 	public ModelAndView edit(@PathVariable ("id") Long id) {
 		Optional<Estado> estado = repository.findById(id);
 		Estado esta = estado.get();
 		return add(esta);
 		
 	    }
-	@RequestMapping("/removerEstado/{id}")
+	@RequestMapping("administrativo/removerEstado/{id}")
 	public ModelAndView delete(@PathVariable ("id") Long id) {
 		Optional<Estado> estado = repository.findById(id);		
 		Estado esta = estado.get();
 		repository.delete(esta);
 		return findAll();
 	    }
-	@RequestMapping("/salvarEstado")
+	@RequestMapping("administrativo/salvarEstado")
 	public ModelAndView remove(@Valid Estado estado, BindingResult result) {
 		if(result.hasErrors()){
 			return add(estado);

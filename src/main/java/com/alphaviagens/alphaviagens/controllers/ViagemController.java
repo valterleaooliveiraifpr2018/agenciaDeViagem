@@ -46,7 +46,7 @@ public class ViagemController {
 
 	@RequestMapping("/viagemAdd")
 	public ModelAndView add(Viagem viagem) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("/viagemAdd");
 		mv.addObject("viagem", viagem);
 		List<Cidade> cidade = cid.findAll();
 		mv.addObject("cidades", cidade);
