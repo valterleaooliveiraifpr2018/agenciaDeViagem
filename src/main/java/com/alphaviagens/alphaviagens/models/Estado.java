@@ -40,8 +40,5 @@ public class Estado implements Serializable {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-	public static long getSeriaversionuid() {
-		return seriaVersionUID;
-	}
-	
+
 }

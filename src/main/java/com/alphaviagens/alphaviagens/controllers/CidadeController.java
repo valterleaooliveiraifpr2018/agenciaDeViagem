@@ -30,15 +30,15 @@ public class CidadeController {
 	@Autowired
 	LocaisTransportesRepository repositoryLocaisTrans;
 	
-	@GetMapping("/cidadeForm")
+	@GetMapping("administrativo/cidadeForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/cidadeForm");
 		mv.addObject("estado", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/cidadeAdd")
+	@RequestMapping("administrativo/cidadeAdd")
 	public ModelAndView add(Cidade cidade) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/cidadeAdd");
 		mv.addObject("cidade",cidade);
 		
 		List<Estado> listEstado = repositoryEstado.findAll();
@@ -48,20 +48,20 @@ public class CidadeController {
 		mv.addObject("locaisTransportes", locaisTransporte);
 		return mv;
 	}
-	@RequestMapping("/cidadeEditar/{id}")
+	@RequestMapping("administrativo/cidadeEditar/{id}")
 	public ModelAndView edit(@PathVariable ("id") Long id) {
 		Optional<Cidade> cidade = repository.findById(id);
 		Cidade cid = cidade.get();
 		return add(cid);
 	}
-	@RequestMapping("/cidadeRemover/{id}")
+	@RequestMapping("administrativo/cidadeRemover/{id}")
 	public ModelAndView delete(@PathVariable ("id")Long id) {
 		Optional<Cidade> cidade = repository.findById(id);
 		Cidade ci = cidade.get();
 		repository.delete(ci);
 		return findAll();
 	}
-	@RequestMapping("/cidadeSalvar/{id}")
+	@RequestMapping("administrativo/cidadeSalvar")
 	public ModelAndView save( @Valid Cidade cidade, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(cidade);

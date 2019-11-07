@@ -20,15 +20,15 @@ import com.alphaviagens.alphaviagens.repositorys.EstadoRepository;
 public class EstadoController {
 	@Autowired
 	EstadoRepository repository;
-	@GetMapping("administrativo/estadoForm")
+	@GetMapping("/administrativo/estadoForm")
 	public ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("administrativo/estadoForm");
 		mv.addObject("estados", repository.findAll());
 		return mv;
 	    }
-	@RequestMapping("administrativo/estadoAdd")
+	@RequestMapping("/administrativo/estadoAdd")
 	public ModelAndView add(Estado estado){
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("/administrativo/estadoAdd");
 		mv.addObject("estado",estado);
 		return mv;
 	    }
@@ -36,6 +36,7 @@ public class EstadoController {
 	public ModelAndView edit(@PathVariable ("id") Long id) {
 		Optional<Estado> estado = repository.findById(id);
 		Estado esta = estado.get();
+		System.out.println(esta.getNome());
 		return add(esta);
 		
 	    }
@@ -48,6 +49,7 @@ public class EstadoController {
 	    }
 	@RequestMapping("administrativo/salvarEstado")
 	public ModelAndView remove(@Valid Estado estado, BindingResult result) {
+		
 		if(result.hasErrors()){
 			return add(estado);
 		}
