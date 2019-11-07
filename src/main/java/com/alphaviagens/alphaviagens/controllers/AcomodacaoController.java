@@ -19,32 +19,32 @@ import com.alphaviagens.alphaviagens.repositorys.AcomodacaoRepository;
 public class AcomodacaoController {
 	@Autowired
 	AcomodacaoRepository repository;
-	@GetMapping("/acomodacaoForm")
+	@GetMapping("administrativo/acomodacaoForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/acomodacaoForm");
 		mv.addObject("acomodacoes", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/acomodacaoAdd")
+	@RequestMapping("administrativo/acomodacaoAdd")
 	public ModelAndView add(Acomodacao acomodacao) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("acomadacao", acomodacao);
+		ModelAndView mv = new ModelAndView("administrativo/acomodacaoAdd");
+		mv.addObject("acomodacao", acomodacao);
 		return mv;
 	}
-	@RequestMapping("/acomodacaoEditar/{id}")
+	@RequestMapping("administrativo/acomodacaoEditar/{id}")
 	public ModelAndView edit(@PathVariable ("id")Long id) {
 		Optional<Acomodacao> acomodacao = repository.findById(id);
 		Acomodacao acomo = acomodacao.get();
 		return add(acomo);
 	}
-	@RequestMapping("/acomodacaoRemover/{id}")
+	@RequestMapping("administrativo/acomodacaoRemover/{id}")
 	public ModelAndView delete(@PathVariable ("id")Long id) {
 		Optional<Acomodacao> acomodacao = repository.findById(id);
 		Acomodacao acomo = acomodacao.get();
 		repository.delete(acomo);
 		return findAll();
 	}
-	@RequestMapping("/acomodacaoSalvar/{id}")
+	@RequestMapping("administrativo/acomodacaoSalvar/")
 	public ModelAndView save(@Valid Acomodacao acomodacao, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(acomodacao);

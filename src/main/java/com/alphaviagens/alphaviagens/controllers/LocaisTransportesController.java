@@ -21,32 +21,32 @@ import com.alphaviagens.alphaviagens.repositorys.LocaisTransportesRepository;
 public class LocaisTransportesController {
 	@Autowired
 	LocaisTransportesRepository repository;
-	@GetMapping("/locaisTransportesForm")
+	@GetMapping("administrativo/locaisTransportesForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/locaisTransportesForm");
 		mv.addObject("locaisTransportes", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/locaisTransportesAdd")
+	@RequestMapping("administrativo/locaisTransportesAdd")
 	public ModelAndView add(LocaisTransportes locais) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/locaisTransportesAdd");
 		mv.addObject("locaisTransportes", locais);
 		return mv;
 	}
-	@RequestMapping("/locaisTransportesEdit/{id}")
+	@RequestMapping("administrativo/locaisTransportesEditar/{id}")
 	public ModelAndView edit(@PathVariable ("id") Long id) {
 		Optional<LocaisTransportes> locais = repository.findById(id);
 		LocaisTransportes lo = locais.get();
 		return add(lo);
 	}
-	@RequestMapping("/locaisTransportesRemover/{id}")
+	@RequestMapping("administrativo/locaisTransportesRemover/{id}")
 	public ModelAndView delete(@PathVariable ("id") Long id) {
 		Optional<LocaisTransportes> locais = repository.findById(id);
 		LocaisTransportes lo = locais.get();
 		repository.delete(lo);
 		return findAll();
 	}
-	@RequestMapping("/locaisTRansportesSalvar/{id}")
+	@RequestMapping("administrativo/locaisTransportesSalvar/")
 	public ModelAndView save( @Valid LocaisTransportes locais, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(locais);

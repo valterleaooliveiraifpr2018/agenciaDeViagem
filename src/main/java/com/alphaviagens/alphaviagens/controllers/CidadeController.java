@@ -33,19 +33,15 @@ public class CidadeController {
 	@GetMapping("administrativo/cidadeForm")
 	public ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("administrativo/cidadeForm");
-		mv.addObject("estado", repository.findAll());
+		mv.addObject("cidades", repository.findAll());
 		return mv;
 	}
 	@RequestMapping("administrativo/cidadeAdd")
 	public ModelAndView add(Cidade cidade) {
 		ModelAndView mv = new ModelAndView("administrativo/cidadeAdd");
 		mv.addObject("cidade",cidade);
-		
 		List<Estado> listEstado = repositoryEstado.findAll();
 		mv.addObject("estados", listEstado);
-		
-		List<LocaisTransportes> locaisTransporte = repositoryLocaisTrans.findAll();
-		mv.addObject("locaisTransportes", locaisTransporte);
 		return mv;
 	}
 	@RequestMapping("administrativo/cidadeEditar/{id}")

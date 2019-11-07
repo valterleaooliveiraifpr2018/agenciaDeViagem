@@ -17,6 +17,13 @@ public  class Acomodacao  implements Serializable{
 	private Long id;
 	@Column
 	private Double preco;
+	private String nome;
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public Long getId() {
 		return id;
 	}

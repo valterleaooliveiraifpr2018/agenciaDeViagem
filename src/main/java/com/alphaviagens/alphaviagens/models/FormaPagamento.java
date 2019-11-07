@@ -20,6 +20,8 @@ public class FormaPagamento implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@Column
+	private String nome;
+	@Column
 	private Double pagTotal;
 	@Column
 	private Double formPga;
@@ -30,6 +32,12 @@ public class FormaPagamento implements Serializable {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public Double getPagTotal() {
 		return pagTotal;

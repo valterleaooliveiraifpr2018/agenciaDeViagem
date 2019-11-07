@@ -26,6 +26,14 @@ public class Funcionario implements Serializable {
 	private String cnh;
 	@Column
 	private Viagem viagem;
+	@Column
+	private Cidade cidade;
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
 	public Long getId() {
 		return id;
 	}
