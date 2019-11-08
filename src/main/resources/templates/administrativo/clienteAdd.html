@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -123,7 +123,7 @@
 			<li class="nav-item"><a class="nav-link" href="tables"> <i
 					class="fas fa-fw fa-table"></i> <span>Tables</span></a></li>
 		</ul>
-		<form th:object="${cidade}" th:action="@{/administrativo/cidadeSalvar}" method="POST">
+		<form th:object="${cliente}" th:action="@{/administrativo/salvarCliente}" method="POST">
 			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="detailedError : ${#fields.detailedErrors()}">
 					<span th:text="${detailedError.message}"></span>
@@ -131,7 +131,7 @@
 			</div>
 			<div class="container">
 				<div class="card card-register mx-auto mt-5">
-					<div class="card-header">Cadastro de Cidade</div>
+					<div class="card-header">Cadastro de Cliente</div>
 					<div class="card-body">
 						<div class="form-group">
 							<div class="form-row">
@@ -139,17 +139,28 @@
 									<div class="form-label-group"
 										th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
 										<input type="text" id="firstName" th:field="*{nome}"
-											class="form-control" placeholder="Nome da cidade"
+											class="form-control" placeholder="Nome do cliente"
 											required="required" autofocus="autofocus"> <label
 											for="firstName">Nome</label>
 									</div>
 								</div>
 								<div class="col-md-6">
-									<select th:field="*{estado}" class="form-control">
-										<option th:each="est: ${estados}" th:value="${est.id}"
-											th:text="${est.nome}"></option>
-										<label for="firstName">Estado</label>
-									</select>
+									<div class="form-label-group"
+										th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
+										<input type="text" id="firstName" th:field="*{cpf}"
+											class="form-control" placeholder="CPF"
+											required="required" autofocus="autofocus" max="11" > <label
+											for="firstName">CPF</label>
+									</div>
+								</div>
+									<div class="col-md-6">
+									<div class="form-label-group"
+										th:classappend="${#fields.hasErrors('rg')}? 'has-error'">
+										<input type="text" id="firstName" th:field="*{rg}"
+											class="form-control" placeholder="Rg"
+											required="required" autofocus="autofocus" max="10" > 
+											<label>RG</label>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-6">

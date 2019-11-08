@@ -123,7 +123,7 @@
 			<li class="nav-item"><a class="nav-link" href="tables"> <i
 					class="fas fa-fw fa-table"></i> <span>Tables</span></a></li>
 		</ul>
-		<form th:object="${cidade}" th:action="@{/administrativo/cidadeSalvar}" method="POST">
+		<form th:object="${viagem}" th:action="@{/administrativo/viagemSalvar}" method="POST">
 			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="detailedError : ${#fields.detailedErrors()}">
 					<span th:text="${detailedError.message}"></span>
@@ -131,24 +131,46 @@
 			</div>
 			<div class="container">
 				<div class="card card-register mx-auto mt-5">
-					<div class="card-header">Cadastro de Cidade</div>
+					<div class="card-header">Cadastro de Viagem</div>
 					<div class="card-body">
 						<div class="form-group">
 							<div class="form-row">
+							<div class="col-md-6">
+									<div class="form-label-group"
+										th:classappend="${#fields.hasErrors('local')}? 'has-error'">
+										<input type="text" id="firstName" th:field="*{local}"
+											class="form-control" placeholder="local da viagem"
+											required="required" autofocus="autofocus"> <label
+											for="firstName">Local</label>
+									</div>
 								<div class="col-md-6">
 									<div class="form-label-group"
-										th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
-										<input type="text" id="firstName" th:field="*{nome}"
-											class="form-control" placeholder="Nome da cidade"
+										th:classappend="${#fields.hasErrors('destino')}? 'has-error'">
+										<input type="text" id="lastName" th:field="*{destino}"
+											class="form-control" placeholder="destino da viagem"
 											required="required" autofocus="autofocus"> <label
-											for="firstName">Nome</label>
+											for="lastName">Destino</label>
 									</div>
 								</div>
 								<div class="col-md-6">
-									<select th:field="*{estado}" class="form-control">
-										<option th:each="est: ${estados}" th:value="${est.id}"
-											th:text="${est.nome}"></option>
-										<label for="firstName">Estado</label>
+									<select th:field="*{cidade}" class="form-control">
+										<option th:each="cid: ${cidades}" th:value="${cid.id}"
+											th:text="${cid.nome}"></option>
+										<label for="firstName">Cidade</label>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<select th:field="*{acomodacao}" class="form-control">
+										<option th:each="acomo: ${acomodacoes}" th:value="${acomo.id}"
+											th:text="${acomo.nome}"></option>
+										<label for="firstName">Acomodações</label>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<select th:field="*{formaPagamento}" class="form-control">
+										<option th:each="form: ${formaPagamentos}" th:value="${form.id}"
+											th:text="${form.nome}"></option>
+										<label for="firstName">Formas de Pagamentos</label>
 									</select>
 								</div>
 							</div>
@@ -159,6 +181,15 @@
 										class="form-control" required="required">
 								</div>
 							</div>
+<!-- 								<div class="col-md-6"> -->
+<!-- 									<div class="form-label-group" -->
+<!-- 										th:classappend="${#fields.hasErrors('dataViagem')}? 'has-error'"> -->
+<!-- 										<input type="date" id="firstName" th:field="*{dataViagem}" -->
+<!-- 											class="form-control" placeholder="data da viagem" -->
+<!-- 											required="required" autofocus="autofocus"> <label -->
+<!-- 											for="firstName">Data da Viagem</label> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 						</div>
 					</div>
 					<button class="btn btn-primary btn-block">Cadastrar</button>

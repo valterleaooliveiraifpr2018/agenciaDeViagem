@@ -1,19 +1,15 @@
 package com.alphaviagens.alphaviagens.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 @Entity
 @Table (name="Viagem")
 public class Viagem implements Serializable {
@@ -23,9 +19,8 @@ public class Viagem implements Serializable {
 	private Long id;
 	@Column
 	private String local;
-	// temporalType.TIMESTAMP, serve pra configurar a data e o horário //
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataViagem;
+	@Column
+	private String dataViagem;
 	@Column
 	private String destino;
 	@ManyToOne
@@ -46,10 +41,10 @@ public class Viagem implements Serializable {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	public Date getData() {
+	public String getData() {
 		return dataViagem;
 	}
-	public void setData(Date dataViagem) {
+	public void setData(String dataViagem) {
 		this.dataViagem = dataViagem;
 	}
 	

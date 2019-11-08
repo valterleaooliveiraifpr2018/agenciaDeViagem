@@ -21,33 +21,33 @@ import com.alphaviagens.alphaviagens.repositorys.ClienteRepository;
 public class ClienteController {
 	@Autowired
 	ClienteRepository repository;
-	@GetMapping("/clienteForm")
+	@GetMapping("administrativo/clienteForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("cliente", repository.findAll());
+		ModelAndView mv = new ModelAndView("administrativo/clienteForm");
+		mv.addObject("clientes", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/clienteAdd")
+	@RequestMapping("administrativo/clienteAdd")
 	public ModelAndView add(Cliente cliente){
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/clienteAdd");
 		mv.addObject("cliente", cliente);
 		return mv;
 	
     }
-	@RequestMapping("/editarClinte/{id}")
+	@RequestMapping("administrativo/editarClinte/{id}")
 	public ModelAndView edit(@PathVariable ("id")Long id) {
 		Optional<Cliente> cliente = repository.findById(id);
 		Cliente cli = cliente.get();
 		return add(cli);
 	}
-	@RequestMapping("/removerClinte/{id}")
+	@RequestMapping("administrativo/removerClinte/{id}")
 	public ModelAndView delete(@PathVariable ("id")Long id) {
 		Optional<Cliente> cliente = repository.findById(id);
 		Cliente cli = cliente.get();
 		repository.delete(cli);
 		return findAll();
 	}
-	@RequestMapping("/salvarCliente/{id}")
+	@RequestMapping("administrativo/salvarCliente")
 	public ModelAndView save(@Valid Cliente cliente, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(cliente);

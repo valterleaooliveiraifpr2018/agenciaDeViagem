@@ -7,13 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
 @Entity
-@Table (name="Formas_De_Pagamentos")
 public class FormaPagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -23,8 +19,6 @@ public class FormaPagamento implements Serializable {
 	private String nome;
 	@Column
 	private Double pagTotal;
-	@Column
-	private Double formPga;
 	@ManyToOne
 	private Cliente cliente;
 	public Long getId() {
@@ -44,12 +38,6 @@ public class FormaPagamento implements Serializable {
 	}
 	public void setPagTotal(Double pagTotal) {
 		this.pagTotal = pagTotal;
-	}
-	public Double getFormPga() {
-		return formPga;
-	}
-	public void setFormPga(Double formPga) {
-		this.formPga = formPga;
 	}
 	public Cliente getCliente() {
 		return cliente;

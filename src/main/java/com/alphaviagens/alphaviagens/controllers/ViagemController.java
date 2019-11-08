@@ -37,16 +37,16 @@ public class ViagemController {
 	@Autowired
 	FormaPagamentoRepository forma;
 
-	@GetMapping("/viagemForm")
+	@GetMapping("administrativo/viagemForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/viagemForm");
 		mv.addObject("viagens", repository.findAll());
 		return mv;
 	}
 
-	@RequestMapping("/viagemAdd")
+	@RequestMapping("administrativo/viagemAdd")
 	public ModelAndView add(Viagem viagem) {
-		ModelAndView mv = new ModelAndView("/viagemAdd");
+		ModelAndView mv = new ModelAndView("administrativo/viagemAdd");
 		mv.addObject("viagem", viagem);
 		List<Cidade> cidade = cid.findAll();
 		mv.addObject("cidades", cidade);
@@ -59,14 +59,14 @@ public class ViagemController {
 
 	}
 
-	@RequestMapping("/vaigemEditar/{id}")
+	@RequestMapping("administrativo/viagemEditar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<Viagem> viagem = repository.findById(id);
 		Viagem vi = viagem.get();
 		return add(vi);
 	}
 
-	@RequestMapping("/viagemRemover/{id}")
+	@RequestMapping("administrativo/viagemRemover/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
 		Optional<Viagem> viagem = repository.findById(id);
 		Viagem vi = viagem.get();
@@ -74,7 +74,7 @@ public class ViagemController {
 		return findAll();
 	}
 
-	@RequestMapping("/viagemSalvar/{id}")
+	@RequestMapping("administrativo/viagemSalvar")
 	public ModelAndView save(@Valid Viagem viagem, BindingResult result) {
 		if (result.hasErrors()) {
 			return add(viagem);

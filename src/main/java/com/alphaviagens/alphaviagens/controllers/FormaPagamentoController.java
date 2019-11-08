@@ -26,35 +26,35 @@ public class FormaPagamentoController {
 	FormaPagamentoRepository repository;
 	@Autowired
 	ClienteRepository repositoryCli;
-	@GetMapping("/formaPagamentoForm")
+	@GetMapping("administrativo/formaPagamentoForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/formaPagamentoForm");
 		mv.addObject("formaPagamentos", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/formaPagamentoAdd")
+	@RequestMapping("administrativo/formaPagamentoAdd")
 	public ModelAndView add(FormaPagamento formaPagamento) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/formaPagamentoAdd");
 		mv.addObject("formaPagamento", formaPagamento);
 		
 		List<Cliente> listCliente = repositoryCli.findAll();
 		mv.addObject("clientes", listCliente);
 		return mv;
 	}
-	@RequestMapping("/formaPagamentoEditar/{id}")
+	@RequestMapping("administrativo/formaPagamentoEditar/{id}")
 	public ModelAndView edit(@PathVariable ("id")Long id) {
 		Optional<FormaPagamento> formaPagamento = repository.findById(id);
 		FormaPagamento forma = formaPagamento.get();
 		return add(forma);
 	}
-	@RequestMapping("/formaPagamentoRemover/{id}")
+	@RequestMapping("administrativo/formaPagamentoRemover/{id}")
 	public ModelAndView delete(@PathVariable ("id")Long id) {
 		Optional<FormaPagamento> formaPagamento = repository.findById(id);
 		FormaPagamento forma = formaPagamento.get();
 		repository.delete(forma);
 		return findAll();
 	}
-	@RequestMapping("/FormaPagamentoSalvar/{id}")
+	@RequestMapping("administrativo/formaPagamentoSalvar")
 	public ModelAndView save(@Valid FormaPagamento formaPagamento, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(formaPagamento);
