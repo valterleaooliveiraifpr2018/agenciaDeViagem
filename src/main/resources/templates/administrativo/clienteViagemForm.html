@@ -138,34 +138,26 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Tabela cadastro de viagem</div>
+            Tabela de cadastro de cidades</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-sm table-striped table-hover table-bordered" >
                 <thead>
                   <tr>
-                    <th>Local</th>
+                    <th>Nome</th>
                     <th>Destino</th>
-                    <th>Data de Viagem</th>
-                    <th>Acomodação</th>
-                    <th>Cidade</th>
-                    <th>Forma de Pagamento</th>
                     <th>Id</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="via: ${viagens}">
-							 <td th:text="${via.local}"></td>
-							 <td th:text="${via.destino}"></td>
-							 <td th:text="${via.dataViagem}"></td>
-							 <td th:text="${via.acomodacao.nome}"></td>	
-							 <td th:text="${via.cidade.nome}"></td>
-							 <td th:text="${via.formaPagamento.nome}"></td>
+                    <tr th:each="clie: ${clienteViagens}">
+							 <td th:text="${clie.cliente.nome}"></td>	
+							 <td th:text="${clie.viagem.destino}"></td>
 							 <td th:text="${cid.id}"></td>
                     <td>
 								<div class="btn-group pull-right">
-							   		<a class="btn btn-sm btn-primary" th:href="@{/administrativo/viagemEditar/{id}(id=${via.id})}" >Alterar</a>
-							   		<a class="delete btn btn-sm btn-danger" th:href="@{/administrativo/viagemRemover/{id}(id=${via.id})}">Remover</a>
+							   		<a class="btn btn-sm btn-primary" th:href="@{/administrativo/clienteViagemEditar/{id}(id=${clie.id})}" >Alterar</a>
+							   		<a class="delete btn btn-sm btn-danger" th:href="@{/administrativo/clienteViagemRemover/{id}(id=${clie.id})}">Remover</a>
 							   </div>
 							   </td>
                     </tr>

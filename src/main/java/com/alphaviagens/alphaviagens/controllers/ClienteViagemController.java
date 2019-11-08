@@ -30,15 +30,15 @@ public class ClienteViagemController {
 	ClienteRepository cli;
 	@Autowired
 	ViagemRepository viagem;
-	@GetMapping("/clienteViagemForm")
+	@GetMapping("administrativo/clienteViagemForm")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/clienteViagemForm");
 		mv.addObject("clienteViagens", repository.findAll());
 		return mv;
 	}
-	@RequestMapping("/clienteViagemAdd")
+	@RequestMapping("administrativo/clienteViagemAdd")
 	public ModelAndView add(ClienteViagem clienteViagem) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("administrativo/clienteViagemAdd");
 		mv.addObject("clienteViagem", clienteViagem);
 		List<Cliente> cliente = cli.findAll();
 		mv.addObject("clientes", cliente);
@@ -46,20 +46,20 @@ public class ClienteViagemController {
 		mv.addObject("viagens", via);
 		return mv;
 	}
-	@RequestMapping("/clienteViagemEditar/{id}")
+	@RequestMapping("administrativo/clienteViagemEditar/{id}")
 	public ModelAndView edit(@PathVariable ("id") Long id) {
 		Optional<ClienteViagem> clienteViagem = repository.findById(id);
 		ClienteViagem clivi = clienteViagem.get();
 		return add(clivi);
 	}
-	@RequestMapping("/clienteViagemRemover/{id}")
+	@RequestMapping("administrativo/clienteViagemRemover/{id}")
 	public ModelAndView delete(@PathVariable ("id") Long id) {
 		Optional<ClienteViagem> clienteViagem = repository.findById(id);
 		ClienteViagem clivi = clienteViagem.get();
 		repository.delete(clivi);
 		return findAll();
 	}
-	@RequestMapping("/clienteViagemSalvar/{id}")
+	@RequestMapping("administrativo/clienteViagemSalvar")
 	public ModelAndView save(@Valid ClienteViagem clienteViagem, BindingResult result) {
 		if(result.hasErrors()) {
 			return add(clienteViagem);
